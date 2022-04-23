@@ -11,9 +11,9 @@ void help() {
 }
 
 void main(List<String> arguments) {
-  var students = <Student>[];
-  var student;
-  String command;
+  var students = <Student?>[];
+  Student? student;
+  String? command;
 
   while (command != 'end') {
     command = stdin.readLineSync();
@@ -23,14 +23,14 @@ void main(List<String> arguments) {
       help();
     } else if (command.startsWith('add-student')) {
       var name = command.substring(11).trim();
-      student = students.firstWhere((s) => s.name == name, orElse: () {
+      student = students.firstWhere((s) => s?.name == name, orElse: () {
         student = Student(name);
         students.add(student);
         return student;
       });
     } else if (command.startsWith('select-student')) {
       var name = command.substring(14).trim();
-      student = students.firstWhere((s) => s.name == name, orElse: () {
+      student = students.firstWhere((s) => s?.name == name, orElse: () {
         return null;
       });
       if (student == null) {
@@ -43,7 +43,7 @@ void main(List<String> arguments) {
       if (student == null) {
         print('No student selected, can not add a grade');
       } else {
-        student.addGrade(args[0], double.parse(args[1]));
+        student?.addGrade(args[0], double.parse(args[1]));
       }
     } else if (command == 'help') {
       help();
@@ -53,5 +53,5 @@ void main(List<String> arguments) {
     }
   }
 
-  students.forEach((s) => s.totals());
+  students.forEach((s) => s?.totals());
 }
