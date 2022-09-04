@@ -8,7 +8,7 @@ Just a simple application to see how to build something in Dart.
 
 ## Build
 
-    dart compile bin/main.dart
+    dart compile exe bin/main.dart
 
 This will output an application called main.exe. Run it with:
 
